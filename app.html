@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aplikasi — e-Persatuan</title>
+  <meta name="description" content="Aplikasi pengurusan dokumen dan pendaftaran persatuan.">
+  <meta name="theme-color" content="#2B3A8F">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="e-Persatuan">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="app-body">
+  <noscript>
+    <div style="max-width:560px;margin:3rem auto;padding:1.5rem;font-family:system-ui">
+      <h1>JavaScript diperlukan</h1>
+      <p>Aplikasi e-Persatuan memerlukan JavaScript. Sila aktifkan JavaScript dalam pelayar anda.</p>
+    </div>
+  </noscript>
+
+  <a class="skip-link" href="#content">Langkau ke kandungan</a>
+
+  <!-- Splash -->
+  <div class="splash" id="splash" role="status" aria-live="polite">
+    <div class="splash-inner">
+      <div class="splash-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 2.6 4.7 5.5v5.9c0 4.4 3.1 8.1 7.3 9.4 4.2-1.3 7.3-5 7.3-9.4V5.5L12 2.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="m8.4 11.9 2.5 2.5 4.8-4.9" stroke="#E9B44C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <b>e-Persatuan</b>
+        <span>Sistem Pengurusan Persatuan</span>
+      </div>
+      <div class="spin" aria-hidden="true"></div>
+      <span style="letter-spacing:.02em;text-transform:none;font-size:.78rem" id="splashMsg">Menyediakan ruang kerja…</span>
+    </div>
+  </div>
+
+  <!-- Log masuk / pendaftaran -->
+  <div id="auth" hidden></div>
+
+  <!-- Aplikasi -->
+  <div class="app-shell" id="app" hidden>
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content" id="content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <nav class="bottomnav" id="bottomnav" aria-label="Navigasi mudah alih" hidden></nav>
+
+  <div id="toast-root" aria-live="polite" aria-atomic="false"></div>
+  <div id="modal-root"></div>
+  <div id="print-root" class="print-only" aria-hidden="true"></div>
+  <input type="file" id="filePick" aria-label="Pilih fail" hidden>
+
+  <script src="assets/js/db.js" defer></script>
+  <script src="assets/js/seed.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+
+  <script>
+    // Daftar service worker (PWA)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').then(function (reg) {
+          setTimeout(function () { reg.update().catch(function () {}); }, 1500);
+        }).catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

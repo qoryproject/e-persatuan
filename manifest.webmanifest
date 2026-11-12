@@ -1,0 +1,56 @@
+{
+  "name": "e-Persatuan — Sistem Pengurusan Persatuan",
+  "short_name": "e-Persatuan",
+  "description": "Portal pengurusan dokumen dan pendaftaran persatuan: senarai semak, profil AJK, dokumen, kewangan dan laporan rasmi.",
+  "lang": "ms",
+  "dir": "ltr",
+  "start_url": "./app.html",
+  "scope": "./",
+  "id": "./app.html",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#F3F5FA",
+  "theme_color": "#2B3A8F",
+  "categories": ["productivity", "business", "government"],
+  "icons": [
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Papan Pemuka",
+      "short_name": "Papan Pemuka",
+      "url": "./app.html#/dashboard",
+      "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Senarai Semak",
+      "short_name": "Senarai Semak",
+      "url": "./app.html#/semak",
+      "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Profil Saya",
+      "short_name": "Profil",
+      "url": "./app.html#/profil",
+      "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>e-Persatuan — Portal Pengurusan Dokumen & Pendaftaran Persatuan</title>
+  <meta name="description" content="Portal digital untuk mengurus dokumen pendaftaran persatuan: minit mesyuarat, perlembagaan, kewangan dan profil AJK. Pantau kelengkapan, sahkan profil dan jana laporan rasmi — terus dari telefon.">
+  <meta name="theme-color" content="#2B3A8F">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="e-Persatuan">
+  <meta property="og:title" content="e-Persatuan — Urus pendaftaran persatuan tanpa kertas">
+  <meta property="og:description" content="Papan pemuka kelengkapan, profil AJK, dokumen berversi, kewangan dan laporan rasmi dalam satu portal.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body class="landing">
+  <a class="skip-link" href="#utama">Langkau ke kandungan</a>
+
+  <header class="site-head">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.6 4.7 5.5v5.9c0 4.4 3.1 8.1 7.3 9.4 4.2-1.3 7.3-5 7.3-9.4V5.5L12 2.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="m8.4 11.9 2.5 2.5 4.8-4.9" stroke="#E9B44C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">
+          <b>e-Persatuan</b>
+          <span>Sistem Pendaftaran</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" id="siteNav" aria-label="Navigasi utama">
+        <a href="#ciri">Ciri</a>
+        <a href="#cara">Cara Guna</a>
+        <a href="#peranan">Peranan</a>
+        <a href="#keselamatan">Keselamatan</a>
+        <a href="#soalan">Soalan Lazim</a>
+      </nav>
+
+      <div class="head-cta">
+        <a class="btn btn-primary" href="app.html">
+          <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+          <span>Buka Aplikasi</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="siteNav">
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="utama">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <span class="hero-eyebrow"><span class="dot" aria-hidden="true"></span> Portal rasmi pendaftaran persatuan</span>
+          <h1>Urus dokumen persatuan, <em>tanpa kertas</em>.</h1>
+          <p class="hero-lead">
+            Satu ruang kerja digital untuk Setiausaha, Bendahari, Pengerusi dan AJK Penaja —
+            pantau kelengkapan, sahkan profil, simpan dokumen dan jana laporan rasmi terus dari telefon.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-gold btn-lg" href="app.html">
+              <i class="bi bi-phone" aria-hidden="true"></i> Mula Sekarang
+            </a>
+            <a class="btn btn-lg" href="#pasang" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.24);color:#fff">
+              <i class="bi bi-download" aria-hidden="true"></i> Pasang di Telefon
+            </a>
+          </div>
+
+          <ul class="hero-note">
+            <li><i class="bi bi-check2-circle" aria-hidden="true"></i> Percuma untuk satu persatuan</li>
+            <li><i class="bi bi-check2-circle" aria-hidden="true"></i> Mesra PDPA 2010</li>
+            <li><i class="bi bi-check2-circle" aria-hidden="true"></i> Android &amp; iPhone</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-bar">
+              <span></span><span></span><span></span>
+              <div class="url">epersatuan.app/papan-pemuka</div>
+            </div>
+            <div class="mock-body">
+              <div class="mock-side">
+                <div class="ms-logo"></div>
+                <div class="ms-item active"></div>
+                <div class="ms-item"></div>
+                <div class="ms-item"></div>
+                <div class="ms-item"></div>
+                <div class="ms-item"></div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-title">
+                  <b>Papan Pemuka</b>
+                  <span class="mock-pill">Fasa Semakan</span>
+                </div>
+                <div class="mock-stats">
+                  <div class="mock-stat">
+                    <small>Kelengkapan</small>
+                    <b>75%</b>
+                    <span class="mini">+15% minggu ini</span>
+                  </div>
+                  <div class="mock-stat">
+                    <small>Jumlah AJK</small>
+                    <b>9</b>
+                    <span class="mini">daripada 9</span>
+                  </div>
+                  <div class="mock-stat">
+                    <small>Menunggu</small>
+                    <b>3</b>
+                    <span class="mini" style="color:var(--gold-700)">perlu semakan</span>
+                  </div>
+                </div>
+                <div class="mock-progress">
+                  <div class="row"><span>Kemajuan keseluruhan</span><span>3 / 4 lengkap</span></div>
+                  <div class="bar"><i></i></div>
+                </div>
+                <div class="mock-list">
+                  <div class="li"><i class="bi bi-check" aria-hidden="true"></i> Minit Mesyuarat Penubuhan <span class="tag">LENGKAP</span></div>
+                  <div class="li"><i class="bi bi-check" aria-hidden="true"></i> Perlembagaan Persatuan <span class="tag">LENGKAP</span></div>
+                  <div class="li warn"><i class="bi bi-clock" aria-hidden="true"></i> Kedudukan Kewangan <span class="tag">SEMAKAN</span></div>
+                  <div class="li warn"><i class="bi bi-exclamation" aria-hidden="true"></i> Butir-butir AJK Penaja <span class="tag">PEMBETULAN</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float-badge">
+            <span class="ib"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
+            <span>Data dilindungi<small>Akses ikut peranan</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRUST ============ -->
+    <div class="trust">
+      <div class="container">
+        <div class="trust-item">
+          <i class="bi bi-people" aria-hidden="true"></i>
+          <div><b>4 peranan</b><span>Setiausaha, Bendahari, Pengerusi, AJK</span></div>
+        </div>
+        <div class="trust-item">
+          <i class="bi bi-shield-lock" aria-hidden="true"></i>
+          <div><b>Kawalan akses</b><span>Setiap tindakan disemak peranan</span></div>
+        </div>
+        <div class="trust-item">
+          <i class="bi bi-file-earmark-check" aria-hidden="true"></i>
+          <div><b>Sedia PDPA</b><span>Data peribadi dilindungi</span></div>
+        </div>
+        <div class="trust-item">
+          <i class="bi bi-phone" aria-hidden="true"></i>
+          <div><b>Boleh dipasang</b><span>Pengalaman seperti aplikasi</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CIRI ============ -->
+    <section class="section" id="ciri">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Ciri utama</span>
+          <h2>Semua yang diperlukan untuk pendaftaran</h2>
+          <p>Daripada senarai semak statutori hingga laporan berkop rasmi — setiap langkah direkod dan boleh dipantau.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <div class="fi"><i class="bi bi-speedometer2" aria-hidden="true"></i></div>
+            <h3>Papan pemuka langsung</h3>
+            <p>Peratusan kelengkapan, kiraan AJK dan item tertunggak dikira secara automatik setiap kali data dikemas kini.</p>
+            <span class="tag">Auto kira</span>
+          </article>
+
+          <article class="feature reveal">
+            <div class="fi"><i class="bi bi-check2-square" aria-hidden="true"></i></div>
+            <h3>Senarai semak statutori</h3>
+            <p>Empat kumpulan dokumen wajib: Minit Mesyuarat, Perlembagaan, Kedudukan Kewangan dan Butir AJK Penaja.</p>
+            <span class="tag">4 item</span>
+          </article>
+
+          <article class="feature reveal">
+            <div class="fi"><i class="bi bi-person-badge" aria-hidden="true"></i></div>
+            <h3>Profil AJK &amp; kamera IC</h3>
+            <p>AJK mengisi profil sendiri dan memuat naik IC serta gambar pasport terus dari kamera telefon. Imej dimampatkan automatik.</p>
+            <span class="tag">Mobile-first</span>
+          </article>
+
+          <article class="feature reveal">
+            <div class="fi"><i class="bi bi-folder2-open" aria-hidden="true"></i></div>
+            <h3>Dokumen berversi</h3>
+            <p>Muat naik PDF, DOCX atau imbas JPG/PNG. Versi lama disimpan supaya sejarah dokumen tidak hilang.</p>
+            <span class="tag">Sejarah versi</span>
+          </article>
+
+          <article class="feature reveal">
+            <div class="fi"><i class="bi bi-cash-coin" aria-hidden="true"></i></div>
+            <h3>Kewangan telus</h3>
+            <p>Rekod kutipan yuran penaja dan perbelanjaan awal. Jumlah, perbelanjaan dan baki dikira serta-merta.</p>
+            <span class="tag">Buku tunai</span>
+          </article>
+
+          <article class="feature reveal">
+            <div class="fi"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i></div>
+            <h3>Laporan &amp; eksport</h3>
+            <p>Jana laporan berkop rasmi untuk cetakan dan eksport data ke CSV untuk sandaran atau semakan luar.</p>
+            <span class="tag">Sedia cetak</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARA ============ -->
+    <section class="section alt" id="cara">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Cara ia berfungsi</span>
+          <h2>Empat langkah ke pendaftaran</h2>
+          <p>Aliran kerja yang jelas untuk semua pihak — tiada lagi senarai semak kertas yang hilang.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step reveal">
+            <h3>Daftar &amp; log masuk</h3>
+            <p>Setiausaha mendaftar pengguna mengikut peranan. Setiap ahli log masuk dengan e-mel atau No. Matrik.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Lengkapkan profil</h3>
+            <p>AJK mengisi butiran peribadi dan memuat naik dokumen pengenalan melalui telefon.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Muat naik dokumen</h3>
+            <p>Setiausaha dan Bendahari memuat naik minit, perlembagaan dan penyata kewangan.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Semak &amp; jana laporan</h3>
+            <p>Setiausaha mengesahkan, Pengerusi meluluskan, kemudian laporan rasmi dijana untuk penyerahan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERANAN ============ -->
+    <section class="section" id="peranan">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Akses ikut peranan</span>
+          <h2>Satu sistem, empat tanggungjawab</h2>
+          <p>Setiap pengguna hanya melihat dan melakukan apa yang dibenarkan.</p>
+        </div>
+
+        <div class="role-grid">
+          <article class="role reveal">
+            <div class="ri"><i class="bi bi-person-gear" aria-hidden="true"></i></div>
+            <div>
+              <h3>Setiausaha</h3>
+              <p>Pentadbir sistem. Mengurus dokumen utama, mengesahkan profil AJK dan mendaftar pengguna.</p>
+              <ul><li>Muat naik minit</li><li>Sahkan profil</li><li>Jana laporan</li></ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="ri"><i class="bi bi-cash-coin" aria-hidden="true"></i></div>
+            <div>
+              <h3>Bendahari</h3>
+              <p>Bertanggungjawab atas rekod kewangan, kutipan yuran penaja dan penyata bank.</p>
+              <ul><li>Rekod kutipan</li><li>Rekod perbelanjaan</li><li>Eksport kewangan</li></ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="ri"><i class="bi bi-person-badge" aria-hidden="true"></i></div>
+            <div>
+              <h3>AJK Penaja</h3>
+              <p>Mengisi dan mengemas kini profil sendiri, termasuk dokumen pengenalan untuk semakan.</p>
+              <ul><li>Profil sendiri</li><li>Kamera IC</li><li>Status pengesahan</li></ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="ri"><i class="bi bi-patch-check" aria-hidden="true"></i></div>
+            <div>
+              <h3>Pengerusi</h3>
+              <p>Memantau keseluruhan proses dan memberikan kelulusan akhir sebelum penyerahan.</p>
+              <ul><li>Pantau kemajuan</li><li>Lihat dokumen</li><li>Kelulusan akhir</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KESELAMATAN ============ -->
+    <section class="section alt" id="keselamatan">
+      <div class="container security">
+        <div class="reveal">
+          <span class="kicker" style="display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:var(--blue-50);border:1px solid var(--blue-100);padding:.3rem .65rem;border-radius:999px;margin-bottom:.9rem">Keselamatan &amp; privasi</span>
+          <h2>Data peribadi dilindungi sepanjang aliran kerja</h2>
+          <p>No. Kad Pengenalan dan imej dokumen tidak dipaparkan secara terbuka. Setiap akses mengikut peranan dan direkodkan dalam log aktiviti.</p>
+
+          <ul class="sec-list">
+            <li>
+              <i class="bi bi-check" aria-hidden="true"></i>
+              <div><b>Kawalan akses berasaskan peranan</b><span>AJK hanya melihat profil sendiri; hanya Setiausaha boleh mengesahkan.</span></div>
+            </li>
+            <li>
+              <i class="bi bi-check" aria-hidden="true"></i>
+              <div><b>Penyamaran No. Kad Pengenalan</b><span>No. KP dipaparkan dalam bentuk terlindung di jadual dan senarai.</span></div>
+            </li>
+            <li>
+              <i class="bi bi-check" aria-hidden="true"></i>
+              <div><b>Log aktiviti tidak boleh diubah</b><span>Muat naik, pengesahan, kelulusan dan cetakan direkod dengan cap masa.</span></div>
+            </li>
+            <li>
+              <i class="bi bi-check" aria-hidden="true"></i>
+              <div><b>Prinsip PDPA 2010</b><span>Notis kebenaran dipaparkan pada borang profil sebelum data dikumpul.</span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sec-card reveal">
+          <div class="lock"><i class="bi bi-shield-lock" aria-hidden="true"></i></div>
+          <h3>Direka untuk kepercayaan</h3>
+          <p>Maklumat sensitif kekal dalam kawalan persatuan. Tiada dokumen dikongsi secara awam.</p>
+          <div class="sec-mini">
+            <div><i class="bi bi-lock" aria-hidden="true"></i> Sesi tamat automatik</div>
+            <div><i class="bi bi-eye-slash" aria-hidden="true"></i> Data peribadi disamarkan</div>
+            <div><i class="bi bi-clock-history" aria-hidden="true"></i> Jejak audit penuh</div>
+            <div><i class="bi bi-download" aria-hidden="true"></i> Sandaran boleh dieksport</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA / PASANG ============ -->
+    <section class="section" id="pasang">
+      <div class="container">
+        <div class="cta reveal">
+          <div class="cta-grid">
+            <div>
+              <h2>Jadikan ia aplikasi telefon anda</h2>
+              <p>Tiada muat turun dari Play Store atau App Store. Pasang terus dari pelayar dan buka dari skrin utama — seperti aplikasi biasa.</p>
+              <div class="hero-actions">
+                <a class="btn btn-gold btn-lg" href="app.html">
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Buka Aplikasi
+                </a>
+                <button class="btn btn-lg" id="installBtn" type="button" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.24);color:#fff">
+                  <i class="bi bi-download" aria-hidden="true"></i> Pasang Sekarang
+                </button>
+              </div>
+            </div>
+            <div class="install-cards">
+              <div class="install-card">
+                <i class="bi bi-android2" aria-hidden="true"></i>
+                <div><b>Android (Chrome)</b><span>Tekan butang “Pasang” atau menu ⋮ → “Add to Home screen”.</span></div>
+              </div>
+              <div class="install-card">
+                <i class="bi bi-apple" aria-hidden="true"></i>
+                <div><b>iPhone (Safari)</b><span>Tekan Kongsi → “Add to Home Screen” → Tambah.</span></div>
+              </div>
+              <div class="install-card">
+                <i class="bi bi-laptop" aria-hidden="true"></i>
+                <div><b>Komputer</b><span>Ikon pasang di bar alamat Chrome atau Edge.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section alt" id="soalan">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Soalan lazim</span>
+          <h2>Perkara yang sering ditanya</h2>
+        </div>
+
+        <div class="faq">
+          <details class="reveal">
+            <summary>Adakah data saya selamat?</summary>
+            <p>Setiap pengguna mempunyai peranan tersendiri. No. Kad Pengenalan disamarkan, akses dokumen terhad kepada peranan yang dibenarkan, dan setiap tindakan direkodkan dalam log aktiviti yang tidak boleh disunting.</p>
+          </details>
+          <details class="reveal">
+            <summary>Bolehkah digunakan tanpa internet?</summary>
+            <p>Selepas dibuka sekali, antara muka asas boleh dimuatkan secara luar talian. Muat naik dokumen dan penyegerakan data memerlukan sambungan internet.</p>
+          </details>
+          <details class="reveal">
+            <summary>Berapa ramai pengguna yang disokong?</summary>
+            <p>MVP ini direka untuk satu persatuan dengan 7 hingga 15 pengguna — sesuai untuk AJK penaja, Setiausaha, Bendahari dan Pengerusi.</p>
+          </details>
+          <details class="reveal">
+            <summary>Adakah ia memerlukan akaun Google?</summary>
+            <p>Tidak. Pengguna log masuk menggunakan e-mel atau No. Matrik serta kata laluan yang diberikan oleh Setiausaha. Akaun Google tidak diperlukan.</p>
+          </details>
+          <details class="reveal">
+            <summary>Bolehkah data disandarkan?</summary>
+            <p>Ya. Setiausaha boleh mengeksport sandaran penuh (JSON) dan data kewangan atau senarai AJK ke CSV pada bila-bila masa dari halaman Tetapan.</p>
+          </details>
+          <details class="reveal">
+            <summary>Adakah laporan boleh dicetak?</summary>
+            <p>Ya. Selepas Kelulusan Akhir, Setiausaha boleh menjana laporan berkop rasmi yang sedia untuk dicetak atau disimpan sebagai PDF melalui dialog cetak pelayar.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2.6 4.7 5.5v5.9c0 4.4 3.1 8.1 7.3 9.4 4.2-1.3 7.3-5 7.3-9.4V5.5L12 2.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="m8.4 11.9 2.5 2.5 4.8-4.9" stroke="#E9B44C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="brand-name"><b>e-Persatuan</b><span>Sistem Pendaftaran</span></span>
+          </a>
+          <p>Portal pengurusan dokumen dan pendaftaran persatuan. Dibina untuk memudahkan urusan AJK penaja, Setiausaha, Bendahari dan Pengerusi.</p>
+        </div>
+        <div class="foot-col">
+          <h3 class="foot-title">Produk</h3>
+          <a href="#ciri">Ciri</a>
+          <a href="#cara">Cara Guna</a>
+          <a href="#peranan">Peranan</a>
+          <a href="app.html">Buka Aplikasi</a>
+        </div>
+        <div class="foot-col">
+          <h3 class="foot-title">Maklumat</h3>
+          <a href="#keselamatan">Keselamatan</a>
+          <a href="#soalan">Soalan Lazim</a>
+          <a href="#pasang">Pasang di Telefon</a>
+          <a href="app.html#/log-masuk">Log Masuk</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year">2026</span> e-Persatuan. Semua hak terpelihara.</span>
+        <span>Dibina dengan penuh teliti untuk persatuan Malaysia.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-root" aria-live="polite"></div>
+
+  <script>
+    // Tahun semasa
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Menu mudah alih
+    var navToggle = document.getElementById('navToggle');
+    var siteNav = document.getElementById('siteNav');
+    navToggle.addEventListener('click', function () {
+      var open = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.innerHTML = open
+        ? '<i class="bi bi-x-lg" aria-hidden="true"></i>'
+        : '<i class="bi bi-list" aria-hidden="true"></i>';
+    });
+    siteNav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        siteNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.innerHTML = '<i class="bi bi-list" aria-hidden="true"></i>';
+      }
+    });
+
+    // Animasi reveal
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // Pasang PWA
+    var deferredPrompt = null;
+    var installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.disabled = false;
+    });
+    installBtn.addEventListener('click', async function () {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        var res = await deferredPrompt.userChoice;
+        if (res.outcome === 'accepted') toast('Aplikasi sedang dipasang…', 'ok');
+        deferredPrompt = null;
+        return;
+      }
+      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      toast(iOS
+        ? 'Di iPhone: tekan Kongsi → Add to Home Screen.'
+        : 'Buka menu pelayar → “Install app” / “Add to Home screen”.', 'warn');
+    });
+
+    function toast(msg, kind) {
+      var root = document.getElementById('toast-root');
+      var el = document.createElement('div');
+      el.className = 'toast ' + (kind || '');
+      el.innerHTML = '<i class="bi ' + (kind === 'warn' ? 'bi-exclamation-circle' : 'bi-info-circle') + '"></i><div>' + msg + '</div>';
+      root.appendChild(el);
+      setTimeout(function () { el.classList.add('out'); setTimeout(function () { el.remove(); }, 220); }, 3800);
+    }
+
+    // Daftar service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').then(function (reg) {
+          setTimeout(function () { reg.update().catch(function () {}); }, 1500);
+        }).catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
