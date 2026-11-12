@@ -68,11 +68,13 @@ Buka <http://localhost:8000/>.
 
 ## 5. Terbitkan secara public
 
+**Produksi (Vercel):** <https://e-persatuan.vercel.app>
+
 **Repo GitHub:** <https://github.com/qoryproject/e-persatuan>
 
-**Pratonton public (GitHub Pages):** <https://qoryproject.github.io/e-persatuan/>
+**Pratonton sandaran (GitHub Pages):** <https://qoryproject.github.io/e-persatuan/>
 
-**Sasaran utama:** Vercel → `https://e-persatuan.vercel.app` selepas import Git disambungkan.
+GitHub ↔ Vercel sudah disambungkan. Setiap `git push` ke `main` akan auto-deploy ke produksi.
 
 Panduan utama (Vercel): **[DEPLOY-VERCEL.md](DEPLOY-VERCEL.md)**
 

@@ -1,8 +1,17 @@
 # Deploy ke Vercel melalui GitHub — e-Persatuan
 
-Repo GitHub (sudah siap): **<https://github.com/qoryproject/e-persatuan>**
+**Status: ✅ SUDAH DEPLOY DAN DISAMBUNGKAN**
 
-Repo ini sudah mengandungi `vercel.json`, `manifest.webmanifest`, `sw.js` dan semua aset PWA. **Tiada build step** diperlukan.
+- **Produksi:** <https://e-persatuan.vercel.app>
+- **Repo GitHub:** <https://github.com/qoryproject/e-persatuan>
+- **Projek Vercel:** `e-persatuan` (pasukan Qoryproject)
+- **Connected Git Repository:** `qoryproject/e-persatuan`
+- **Production Branch:** `main`
+- **Auto-deploy:** ✅ Setiap `git push` ke `main`
+
+Repo ini mengandungi `vercel.json`, `manifest.webmanifest`, `sw.js` dan semua aset PWA. **Tiada build step** diperlukan.
+
+> Bahagian di bawah dikekalkan sebagai rujukan jika projek perlu diimport semula pada masa hadapan.
 
 ---
 
@@ -128,7 +137,9 @@ URL lama akan dialihkan ke URL baharu.
 | Repo GitHub | ✅ `qoryproject/e-persatuan` (public, branch `main`) |
 | Kod di GitHub | ✅ Semua fail WebApp + `vercel.json` |
 | Konfigurasi Vercel | ✅ `vercel.json` disediakan |
-| Import Vercel | ⏳ Perlu login/authorize akaun Vercel anda (langkah 1) |
-| Auto-deploy | ✅ Aktif selepas import Git disambungkan |
+| Import Vercel | ✅ Projek `e-persatuan` dicipta dan di-deploy |
+| Connected Git Repository | ✅ `qoryproject/e-persatuan` |
+| Auto-deploy | ✅ Aktif — push ke `main` mencetuskan deployment |
+| URL produksi | ✅ <https://e-persatuan.vercel.app> |
 
-> Vercel memerlukan pengesahan akaun pemilik. Tiada kata laluan atau token Vercel disimpan dalam repo ini.
+> Tiada kata laluan atau token Vercel disimpan dalam repo ini.
