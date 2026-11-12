@@ -64,17 +64,22 @@ Buka <http://localhost:8000/>.
 
 ## 5. Terbitkan secara public
 
-Panduan langkah demi langkah: **[PANDUAN-DEPLOY.md](PANDUAN-DEPLOY.md)**
+**Repo GitHub:** <https://github.com/qoryproject/e-persatuan>
+
+Panduan utama (Vercel): **[DEPLOY-VERCEL.md](DEPLOY-VERCEL.md)**
 
 Ringkasan pilihan:
 
-1. **Netlify Drop** — paling pantas (drag & drop folder, URL public serta-merta).
-2. **GitHub Pages** — percuma, sesuai untuk jangka panjang.
-3. **Cloudflare Pages** — percuma, pantas di Malaysia.
+1. **Vercel + GitHub** (disyorkan) — import repo sekali, auto-deploy setiap `git push`, domain `https://e-persatuan.vercel.app`.
+2. **Netlify Drop** — drag & drop folder, URL public serta-merta.
+3. **GitHub Pages** — percuma, sesuai untuk jangka panjang.
+4. **Cloudflare Pages** — percuma, pantas di Malaysia.
+
+Panduan semua pilihan: **[PANDUAN-DEPLOY.md](PANDUAN-DEPLOY.md)**
 
 Selepas terbit:
 
-- URL public (contoh `https://e-persatuan.netlify.app`)
+- URL public (contoh `https://e-persatuan.vercel.app`)
 - Pasang di telefon: Android Chrome → *Install app*; iPhone Safari → *Kongsi → Add to Home Screen*.
 
 ## 6. Had penting (versi ini)

@@ -6,6 +6,22 @@ Panduan ini menerbitkan folder `WebApp` sebagai laman web **public** yang boleh 
 
 ---
 
+## Pilihan Vercel + GitHub (disyorkan)
+
+Repo sudah siap: **<https://github.com/qoryproject/e-persatuan>**
+
+Panduan penuh: **[DEPLOY-VERCEL.md](DEPLOY-VERCEL.md)**
+
+Ringkasan:
+
+1. Buka <https://vercel.com/new> → log masuk dengan GitHub (`qoryproject`).
+2. Authorize **Vercel GitHub App** untuk repo `e-persatuan`.
+3. Import → Framework Preset **Other**, Root `./`, tiada build command → **Deploy**.
+4. URL: `https://e-persatuan.vercel.app` (atau nama unik yang dicadangkan).
+5. Sahkan **Project → Settings → Git → Connected Git Repository** menunjukkan `qoryproject/e-persatuan` supaya setiap `git push` auto-deploy.
+
+---
+
 ## Pilihan A — Netlify Drop (paling pantas, 3–5 minit)
 
 Sesuai jika anda mahu URL public segera tanpa command line.
