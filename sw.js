@@ -1,7 +1,7 @@
 /* ============================================================
    e-Persatuan — Service Worker (PWA offline shell)
    ============================================================ */
-const VERSION = 'e-persatuan-v2.0.5';
+const VERSION = 'e-persatuan-v3.0.1';
 const CORE = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const CORE = [
   './assets/css/base.css',
   './assets/css/landing.css',
   './assets/css/app.css',
+  './assets/css/app3.css',
   './assets/js/db.js',
   './assets/js/seed.js',
   './assets/js/app.js',

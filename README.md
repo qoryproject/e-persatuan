@@ -1,6 +1,8 @@
-# e-Persatuan — Laman Web + PWA
+# e-Persatuan v3.0 — Laman Web + PWA
 
 Portal pengurusan dokumen dan pendaftaran persatuan, dibina sebagai **laman web statik + PWA** (boleh dipasang di telefon). Tiada proses *build*, tiada pangkalan data pelayan — semua fail boleh dimuat naik terus ke hosting statik.
+
+> **v3.0** memperkenalkan reka bentuk baharu: hero aurora, bento ciri, tab peranan interaktif, papan pemuka dengan carta donat, aktiviti terkini, command palette (`Ctrl+K`) dan ikon PWA baharu.
 
 ---
 
@@ -27,6 +29,8 @@ WebApp/
 
 ## 2. Ciri
 
+- Papan pemuka v3: carta donat, kad statistik, keutamaan hari ini, aktiviti terkini
+- Command palette (`Ctrl+K`) untuk navigasi pantas
 - Papan pemuka kelengkapan automatik (4 item statutori)
 - Senarai semak dengan status automatik + override manual
 - Profil AJK + muat naik IC/pasport dari kamera telefon

@@ -551,6 +551,7 @@
     var role = EP.ROLES[S.user.peranan] || { label: S.user.peranan, icon: 'bi-person' };
     var pending = pendingProfiles().length;
     var notices = buildNotices();
+    var c = completion();
 
     var ops = NAV.filter(function (n) { return n.group === 'ops' && can(n.perm); });
     var admin = NAV.filter(function (n) { return n.group === 'admin' && can(n.perm); });
@@ -569,11 +570,16 @@
             ? '<img src="' + S.settings.logo + '" alt="Logo persatuan">'
             : '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2.6 4.7 5.5v5.9c0 4.4 3.1 8.1 7.3 9.4 4.2-1.3 7.3-5 7.3-9.4V5.5L12 2.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m8.4 11.9 2.5 2.5 4.8-4.9" stroke="#E9B44C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') +
         '</span>' +
-        '<span><b>e-Persatuan</b><span>' + esc(S.settings.namaPendek || 'WADAH') + '</span></span>' +
+        '<span><b>e-Persatuan</b><span>v3.0 · ' + esc(S.settings.namaPendek || 'WADAH') + '</span></span>' +
       '</a>' +
       '<div class="side-scroll">' +
         '<div class="nav-label">Modul Operasi</div>' + ops.map(navLink).join('') +
         (admin.length ? '<div class="nav-label">Pentadbiran</div>' + admin.map(navLink).join('') : '') +
+        '<div class="side-mini">' +
+          '<div class="sm-top"><span>Kelengkapan</span><b>' + c.pct + '%</b></div>' +
+          '<div class="sm-bar"><i style="width:' + c.pct + '%"></i></div>' +
+          '<p>' + c.done + ' / ' + c.total + ' item lengkap</p>' +
+        '</div>' +
       '</div>' +
       '<div class="side-foot">' +
         '<div class="side-user">' +
@@ -592,6 +598,9 @@
         '<h1>' + title + '</h1>' +
       '</div>' +
       '<div class="top-actions">' +
+        '<button class="search-trigger" type="button" data-act="openSearch" aria-label="Cari halaman">' +
+          '<i class="bi bi-search"></i><span>Cari halaman…</span><kbd>Ctrl K</kbd>' +
+        '</button>' +
         '<span class="top-role"><i class="bi ' + role.icon + '"></i>' + role.label + '</span>' +
         '<button class="icon-btn" type="button" data-act="installApp" title="Pasang aplikasi" aria-label="Pasang aplikasi"><i class="bi bi-download"></i></button>' +
         '<button class="icon-btn" type="button" data-act="showNotices" title="Pemberitahuan" aria-label="Pemberitahuan">' +
@@ -750,49 +759,74 @@
     '</div>';
   }
 
-  function tile(icon, label, act, attrs, count) {
-    return '<button class="tile" type="button" data-act="' + act + '" ' + (attrs || '') + '>' +
+  function qaItem(icon, label, sub, act, attrs, cls, count) {
+    return '<button class="qa" type="button" data-act="' + act + '" ' + (attrs || '') + '>' +
+      '<span class="qa-ic ' + (cls || '') + '"><i class="bi ' + icon + '"></i></span>' +
+      '<span class="qa-copy"><b>' + label + '</b><span>' + sub + '</span></span>' +
       (count ? '<span class="count">' + count + '</span>' : '') +
-      '<span class="ti"><i class="bi ' + icon + '"></i></span><b>' + label + '</b></button>';
+    '</button>';
   }
 
   function quickTiles() {
     var role = S.user.peranan;
     var pc = profileCounts();
-    var f = financeTotals();
     if (role === 'setiausaha') {
       return [
-        tile('bi-journal-arrow-up', 'Muat Naik Minit', 'uploadDoc', 'data-kat="Minit Mesyuarat"'),
-        tile('bi-book', 'Muat Naik Perlembagaan', 'uploadDoc', 'data-kat="Perlembagaan"'),
-        tile('bi-shield-check', 'Sahkan Profil', 'go', 'data-route="review"', pc.menunggu || ''),
-        tile('bi-file-earmark-pdf', 'Jana Laporan', 'go', 'data-route="laporan"'),
-        tile('bi-download', 'Eksport Data', 'go', 'data-route="laporan"'),
-        tile('bi-person-plus', 'Tambah Pengguna', 'go', 'data-route="pengguna"')
+        qaItem('bi-journal-arrow-up', 'Muat Naik Minit', 'Dokumen rasmi PDF', 'uploadDoc', 'data-kat="Minit Mesyuarat"', 'q1'),
+        qaItem('bi-shield-check', 'Sahkan Profil', 'Semak permohonan AJK', 'go', 'data-route="review"', 'q5', pc.menunggu || ''),
+        qaItem('bi-file-earmark-pdf', 'Jana Laporan', 'Selepas kelulusan', 'go', 'data-route="laporan"', 'q4'),
+        qaItem('bi-person-plus', 'Tambah Pengguna', 'Urus akses sistem', 'go', 'data-route="pengguna"', 'q3'),
+        qaItem('bi-check2-square', 'Senarai Semak', '4 item statutori', 'go', 'data-route="semak"', 'q2'),
+        qaItem('bi-download', 'Eksport Data', 'CSV &amp; sandaran', 'go', 'data-route="laporan"', 'q6')
       ].join('');
     }
     if (role === 'bendahari') {
       return [
-        tile('bi-plus-circle', 'Rekod Kutipan', 'addFinance', 'data-arah="masuk"'),
-        tile('bi-dash-circle', 'Rekod Perbelanjaan', 'addFinance', 'data-arah="keluar"'),
-        tile('bi-file-earmark-arrow-up', 'Muat Naik Dokumen', 'uploadDoc', 'data-kat="Kewangan"'),
-        tile('bi-download', 'Eksport Kewangan', 'exportFinance', ''),
-        tile('bi-cash-stack', 'Lihat Buku Tunai', 'go', 'data-route="kewangan"')
+        qaItem('bi-plus-circle', 'Rekod Kutipan', 'Yuran &amp; sumbangan', 'addFinance', 'data-arah="masuk"', 'q5'),
+        qaItem('bi-dash-circle', 'Rekod Perbelanjaan', 'Perbelanjaan awal', 'addFinance', 'data-arah="keluar"', 'q6'),
+        qaItem('bi-cash-stack', 'Buku Tunai', 'Semak baki semasa', 'go', 'data-route="kewangan"', 'q1'),
+        qaItem('bi-file-earmark-arrow-up', 'Muat Naik Penyata', 'Dokumen kewangan', 'uploadDoc', 'data-kat="Kewangan"', 'q3'),
+        qaItem('bi-download', 'Eksport Kewangan', 'Fail CSV', 'exportFinance', '', 'q4')
       ].join('');
     }
     if (role === 'pengerusi') {
       return [
-        tile('bi-check2-square', 'Lihat Senarai Semak', 'go', 'data-route="semak"'),
-        tile('bi-folder2-open', 'Lihat Dokumen', 'go', 'data-route="dokumen"'),
-        tile('bi-patch-check', 'Kelulusan Akhir', 'go', 'data-route="lulus"'),
-        tile('bi-people', 'Senarai AJK', 'go', 'data-route="ajk"')
+        qaItem('bi-check2-square', 'Senarai Semak', 'Pantau kemajuan', 'go', 'data-route="semak"', 'q1'),
+        qaItem('bi-people', 'Senarai AJK', 'Profil penaja', 'go', 'data-route="ajk"', 'q5'),
+        qaItem('bi-folder2-open', 'Dokumen', 'Lihat fail utama', 'go', 'data-route="dokumen"', 'q2'),
+        qaItem('bi-patch-check', 'Kelulusan Akhir', 'Keputusan penyerahan', 'go', 'data-route="lulus"', 'q4')
       ].join('');
     }
     return [
-      tile('bi-person-badge', 'Isi / Kemas Kini Profil', 'go', 'data-route="profil"'),
-      tile('bi-camera', 'Ambil Gambar IC', 'go', 'data-route="profil"'),
-      tile('bi-image', 'Muat Naik Pasport', 'go', 'data-route="profil"'),
-      tile('bi-check2-square', 'Lihat Status', 'go', 'data-route="semak"')
+      qaItem('bi-person-badge', 'Profil Saya', 'Kemas kini maklumat', 'go', 'data-route="profil"', 'q1'),
+      qaItem('bi-camera', 'Ambil Gambar IC', 'Kamera telefon', 'go', 'data-route="profil"', 'q3'),
+      qaItem('bi-image', 'Muat Naik Pasport', 'Latar belakang putih', 'go', 'data-route="profil"', 'q2'),
+      qaItem('bi-check2-square', 'Status Semakan', 'Lihat senarai semak', 'go', 'data-route="semak"', 'q5')
     ].join('');
+  }
+
+  function donutSvg(pct) {
+    var r = 54;
+    var circ = 2 * Math.PI * r;
+    var off = circ * (1 - Math.max(0, Math.min(100, pct)) / 100);
+    return '<svg viewBox="0 0 140 140" role="img" aria-label="' + pct + ' peratus lengkap">' +
+      '<defs><linearGradient id="donutGrad" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="#7C93FF"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#F5C451"/>' +
+      '</linearGradient></defs>' +
+      '<circle class="d-bg" cx="70" cy="70" r="' + r + '"/>' +
+      '<circle class="d-fg" cx="70" cy="70" r="' + r + '" stroke-dasharray="' + circ.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '"/>' +
+    '</svg>';
+  }
+
+  function timeAgo(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '—';
+    var diff = Date.now() - d.getTime();
+    if (diff < 60000) return 'baru sahaja';
+    if (diff < 3600000) return Math.floor(diff / 60000) + ' min lalu';
+    if (diff < 86400000) return Math.floor(diff / 3600000) + ' jam lalu';
+    if (diff < 604800000) return Math.floor(diff / 86400000) + ' hari lalu';
+    return Util.fmtDate(iso);
   }
 
   function pageDashboard() {
@@ -805,12 +839,14 @@
     var dSasaran = Util.daysUntil(S.settings.tarikhSasaran);
     var myProfile = profileOf(me.id);
     var myStatus = myProfile ? myProfile.status : 'draf';
-    var phase = S.settings.statusKelulusan === 'lulus' ? 'Lulus' : c.pct === 100 ? 'Sedia untuk kelulusan' : 'Fasa semakan dokumen';
+    var phase = S.settings.statusKelulusan === 'lulus' ? 'Lulus' : c.pct === 100 ? 'Sedia untuk kelulusan' : 'Fasa semakan';
+    var today = new Date().toLocaleDateString('ms-MY', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    var firstName = String(me.nama || '').split(' ')[0];
 
     var stats = '';
     if (role === 'setiausaha' || role === 'pengerusi') {
       stats = [
-        statCard('Peratusan Kelengkapan', c.pct + '%', '<span class="' + (c.pct >= 75 ? 'up' : '') + '">' + c.done + ' / ' + c.total + ' item lengkap</span>', 'bi-bar-chart', ''),
+        statCard('Peratusan Kelengkapan', c.pct + '%', '<span class="' + (c.pct >= 75 ? 'up' : '') + '">' + c.done + ' / ' + c.total + ' item lengkap</span>', 'bi-pie-chart', ''),
         statCard('Jumlah AJK', String(pc.total), '<span>' + pc.lengkap + ' profil lengkap</span>', 'bi-people', 'green'),
         statCard('AJK Belum Lengkap', String(pc.total - pc.lengkap), '<span class="' + (pc.total - pc.lengkap ? 'down' : '') + '">' + (pc.pembetulan + pc.draf) + ' perlu tindakan</span>', 'bi-person-exclamation', 'gold'),
         statCard('Menunggu Pengesahan', String(pc.menunggu), '<span>' + (pc.menunggu ? 'Sedia untuk semakan' : 'Tiada menunggu') + '</span>', 'bi-hourglass-split', 'gold')
@@ -831,57 +867,110 @@
       ].join('');
     }
 
+    var heroMsg = '';
+    if (role === 'setiausaha') {
+      heroMsg = pc.menunggu + ' profil menunggu semakan, ' + (pc.pembetulan + pc.draf) + ' lagi perlu tindakan. Semua rekod boleh dipantau dari sini.';
+    } else if (role === 'bendahari') {
+      heroMsg = 'Baki semasa ' + Util.fmtRM(f.baki) + ' daripada ' + S.finance.length + ' rekod kewangan. Kemas kini buku tunai sebelum tarikh akhir.';
+    } else if (role === 'pengerusi') {
+      heroMsg = c.pct + '% kelengkapan penyerahan. ' + (S.settings.statusKelulusan === 'lulus' ? 'Persatuan telah diluluskan.' : 'Semak kesediaan sebelum memberi Kelulusan Akhir.');
+    } else {
+      heroMsg = myStatus === 'lengkap'
+        ? 'Profil anda telah disahkan dan dikunci. Terima kasih kerana melengkapkan maklumat.'
+        : 'Lengkapkan profil dan dokumen pengenalan anda untuk semakan Setiausaha.';
+    }
+
+    var noticeList = buildNotices();
+    if (role === 'ajk' && myStatus !== 'lengkap') {
+      noticeList = [{
+        kind: myStatus === 'pembetulan' ? 'danger' : 'warn',
+        icon: 'bi-person-badge',
+        title: myStatus === 'pembetulan' ? 'Profil perlu pembetulan' : 'Lengkapkan profil anda',
+        text: myStatus === 'pembetulan' ? 'Sila muat naik semula dokumen yang diminta.' : 'Isi maklumat dan muat naik IC serta gambar pasport.',
+        route: 'profil'
+      }].concat(noticeList);
+    }
+    var tasks = noticeList.slice(0, 3).map(function (n) {
+      var cls = n.kind === 'danger' ? 'danger' : n.kind === 'warn' ? '' : n.kind === 'ok' ? 'ok' : 'info';
+      return '<div class="v3-task ' + cls + '">' +
+        '<span class="t-icon"><i class="bi ' + n.icon + '"></i></span>' +
+        '<div class="t-copy"><b>' + esc(n.title) + '</b><span>' + esc(n.text) + '</span></div>' +
+        (n.route ? '<button class="t-go" type="button" data-act="go" data-route="' + n.route + '" aria-label="Buka"><i class="bi bi-arrow-right"></i></button>' : '') +
+      '</div>';
+    }).join('');
+
     var rows = c.items.map(function (it) {
       var cls = it.status === 'lengkap' ? '' : (it.status === 'semakan' || it.status === 'menunggu') ? 'pending' : 'todo';
       var ic = it.status === 'lengkap' ? 'bi-check-lg' : it.status === 'belum' ? 'bi-dash' : 'bi-hourglass';
-      return '<div class="check-row ' + cls + '" data-act="go" data-route="semak" role="button" tabindex="0">' +
-        '<span class="cr-icon"><i class="bi ' + ic + '"></i></span>' +
-        '<div class="cr-copy"><b>' + it.nama + '</b><span>' + it.note + '</span></div>' +
+      return '<div class="v3-prow ' + cls + '" data-act="go" data-route="semak" role="button" tabindex="0">' +
+        '<span class="p-ic"><i class="bi ' + ic + '"></i></span>' +
+        '<div class="p-copy"><b>' + it.nama + '</b><span>' + it.note + '</span></div>' +
         statusChip(it.status) +
       '</div>';
     }).join('');
 
+    var logIcons = {
+      muatnaik: 'bi-cloud-arrow-up', sahkan: 'bi-patch-check', pembetulan: 'bi-exclamation-triangle',
+      padam: 'bi-trash', logmasuk: 'bi-box-arrow-in-right', daftar: 'bi-person-plus',
+      kelulusan: 'bi-check2-circle', cetak: 'bi-printer', tambah: 'bi-plus-circle',
+      ubah: 'bi-pencil', reset: 'bi-key', notifikasi: 'bi-bell', setup: 'bi-gear'
+    };
+    var recent = S.logs.slice().sort(function (a, b) { return String(b.ts).localeCompare(String(a.ts)); }).slice(0, 5);
+    var activity = recent.length ? recent.map(function (l) {
+      return '<div class="act">' +
+        '<span class="act-dot"><i class="bi ' + (logIcons[l.tindakan] || 'bi-activity') + '"></i></span>' +
+        '<div style="min-width:0"><b>' + esc(l.butiran || l.tindakan) + '</b><span>' + esc(l.nama || 'Sistem') + '</span></div>' +
+        '<time>' + timeAgo(l.ts) + '</time>' +
+      '</div>';
+    }).join('') : '<p class="muted small" style="margin:.4rem 0">Tiada aktiviti direkodkan.</p>';
+
     return '' +
-      '<div class="hello">' +
-        avatar(me.nama, '') +
-        '<div class="h-copy">' +
-          '<span>Selamat datang</span>' +
-          '<h2>' + esc(me.nama) + '</h2>' +
-          '<p>' + esc(S.settings.namaRasmi) + '</p>' +
+      '<div class="v3-hero">' +
+        '<div class="v3-hero-copy">' +
+          '<span class="v3-date"><i class="bi bi-calendar3"></i> ' + today + '</span>' +
+          '<h2>Selamat kembali, <span>' + esc(firstName) + '</span></h2>' +
+          '<p>' + esc(heroMsg) + '</p>' +
+          '<div class="v3-hero-chips">' +
+            '<span class="v3-hchip"><i class="bi bi-hash"></i> ' + esc(S.settings.noRujukan) + '</span>' +
+            '<span class="v3-hchip"><i class="bi bi-people"></i> Sesi ' + esc(S.settings.sesi) + '</span>' +
+            '<span class="v3-hchip gold"><i class="bi bi-broadcast"></i> ' + phase + '</span>' +
+          '</div>' +
         '</div>' +
-        '<div class="h-meta">' +
-          '<span class="h-chip"><i class="bi bi-hash"></i> ' + esc(S.settings.noRujukan) + '</span>' +
-          '<span class="h-chip"><i class="bi bi-calendar3"></i> Sesi ' + esc(S.settings.sesi) + '</span>' +
-          '<span class="h-chip gold"><i class="bi bi-broadcast"></i> ' + phase + '</span>' +
+        '<div class="v3-donut">' +
+          donutSvg(c.pct) +
+          '<div class="v3-donut-center"><b>' + c.pct + '%</b><span>Lengkap</span><em>' + c.done + ' / ' + c.total + ' item</em></div>' +
         '</div>' +
       '</div>' +
 
-      '<div class="section-title"><h3><i class="bi bi-lightning-charge-fill"></i> Tindakan Pantas</h3><span class="muted small">' + roleLabel(role) + '</span></div>' +
-      '<div class="tiles">' + quickTiles() + '</div>' +
+      '<div class="v3-section"><h3><i class="bi bi-lightning-charge-fill" style="color:var(--gold-700);margin-right:.15rem"></i> Tindakan pantas</h3>' +
+        '<button class="v3-link" type="button" data-act="moreNav">Semua menu <i class="bi bi-arrow-right"></i></button></div>' +
+      '<div class="v3-quick">' + quickTiles() + '</div>' +
 
-      '<div class="section-title"><h3>Ringkasan</h3><span class="muted small">Dikemas kini ' + Util.fmtDateTime(Util.nowISO()) + '</span></div>' +
+      '<div class="v3-section"><h3>Ringkasan</h3><span class="muted small">Dikemas kini ' + Util.fmtDateTime(Util.nowISO()) + '</span></div>' +
       '<div class="stat-grid">' + stats + '</div>' +
 
-      '<div class="dash-grid">' +
-        '<div class="dash-col">' +
-          '<div class="card progress-panel">' +
-            '<div class="pp-head">' +
-              '<div><h3>Kelengkapan Penyerahan</h3><p>Empat item statutori pendaftaran persatuan</p></div>' +
-              '<div class="pp-pct">' + c.pct + '%<br><small>LENGKAP</small></div>' +
-            '</div>' +
-            '<div class="pp-bar"><i style="width:' + c.pct + '%"></i></div>' +
-            '<div class="check-rows">' + rows + '</div>' +
+      '<div class="v3-grid">' +
+        '<div class="v3-col">' +
+          '<div class="card">' +
+            '<div class="v3-card-head"><div><h3>Keutamaan hari ini</h3><p>Tindakan yang memerlukan perhatian</p></div>' +
+              '<span class="chip chip-gold">' + Math.min(noticeList.length, 3) + ' item</span></div>' +
+            '<div class="v3-tasks">' + tasks + '</div>' +
+          '</div>' +
+          '<div class="card">' +
+            '<div class="v3-card-head"><div><h3>Kelengkapan penyerahan</h3><p>Empat item statutori</p></div>' +
+              '<span class="chip chip-blue">' + c.pct + '%</span></div>' +
+            '<div class="v3-progress">' + rows + '</div>' +
           '</div>' +
         '</div>' +
-        '<div class="dash-col">' +
+        '<div class="v3-col">' +
           '<div class="card">' +
-            '<div class="card-head"><div><h3>Kalendar Tarikh Penting</h3><p class="sub">Jadual pendaftaran &amp; statutori</p></div></div>' +
+            '<div class="v3-card-head"><div><h3>Kalendar</h3><p>Tarikh penting pendaftaran</p></div></div>' +
             calendarHtml() +
           '</div>' +
           '<div class="card">' +
-            '<div class="card-head"><div><h3>Papan Notis &amp; Peringatan</h3><p class="sub">Makluman sistem</p></div>' +
-              '<span class="chip chip-gold">' + buildNotices().length + ' notis</span></div>' +
-            '<div class="notices">' + noticesHtml(buildNotices()) + '</div>' +
+            '<div class="v3-card-head"><div><h3>Aktiviti terkini</h3><p>Jejak audit sistem</p></div>' +
+              '<a class="v3-link" href="#/log">Lihat</a></div>' +
+            '<div class="v3-activity">' + activity + '</div>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -1631,7 +1720,7 @@
         '<div class="card card-pad">' +
           '<h3 style="font-size:.95rem;margin-bottom:.8rem">Maklumat Sistem</h3>' +
           '<dl class="detail-list">' +
-            '<div class="dl"><dt>Versi</dt><dd>e-Persatuan 2.0 (PWA)</dd></div>' +
+            '<div class="dl"><dt>Versi</dt><dd>e-Persatuan 3.0 (PWA)</dd></div>' +
             '<div class="dl"><dt>Penyimpanan</dt><dd>IndexedDB pada peranti ini</dd></div>' +
             '<div class="dl"><dt>Status Kelulusan</dt><dd>' + (st.statusKelulusan === 'lulus' ? statusChip('lengkap') : '<span class="chip chip-blue"><i class="bi bi-hourglass"></i>Belum diluluskan</span>') + '</dd></div>' +
             '<div class="dl"><dt>Pelayar</dt><dd>' + esc(navigator.userAgent.split(')')[0] + ')') + '</dd></div>' +
@@ -1715,6 +1804,64 @@
             '<i class="bi ' + n.icon + '" style="color:var(--blue)"></i><span>' + n.label + '</span></a>';
         }).join('') + '</div>'
       });
+    },
+
+    openSearch: function () {
+      var items = NAV.filter(function (n) { return can(n.perm); }).map(function (n) {
+        return { label: n.label, icon: n.icon, route: n.route };
+      });
+      if (can('uploadDocs')) items.push({ label: 'Muat naik dokumen', icon: 'bi-cloud-arrow-up', run: 'upload' });
+      if (can('users')) items.push({ label: 'Tambah pengguna', icon: 'bi-person-plus', route: 'pengguna' });
+      items.push({ label: 'Pasang aplikasi', icon: 'bi-phone', run: 'install' });
+      items.push({ label: 'Log keluar', icon: 'bi-box-arrow-right', run: 'logout' });
+
+      function row(it, i) {
+        return '<button class="palette-item' + (i === 0 ? ' sel' : '') + '" type="button" data-act="paletteGo" data-route="' + (it.route || '') + '" data-run="' + (it.run || '') + '">' +
+          '<i class="bi ' + it.icon + '"></i><span>' + it.label + '</span><kbd>↵</kbd>' +
+        '</button>';
+      }
+
+      openModal({
+        title: 'Cari &amp; arahan pantas',
+        sub: 'Taip untuk menapis — Enter untuk pilih',
+        size: 'sm',
+        body: '<div class="palette-search"><i class="bi bi-search"></i><input id="paletteInput" placeholder="Cari halaman atau tindakan…" autocomplete="off" aria-label="Cari halaman"></div>' +
+          '<div class="palette-list" id="paletteList">' + items.map(row).join('') + '</div>',
+        onMount: function (root) {
+          var input = $('#paletteInput', root);
+          var list = $('#paletteList', root);
+          var buttons = Array.prototype.slice.call(list.querySelectorAll('.palette-item'));
+          function apply() {
+            var q = String(input.value || '').toLowerCase();
+            var first = null;
+            buttons.forEach(function (b) {
+              var ok = b.innerText.toLowerCase().indexOf(q) >= 0;
+              b.hidden = !ok;
+              b.classList.remove('sel');
+              if (ok && !first) first = b;
+            });
+            if (first) first.classList.add('sel');
+          }
+          input.addEventListener('input', apply);
+          input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              var target = buttons.filter(function (b) { return !b.hidden; })[0];
+              if (target) { e.preventDefault(); target.click(); }
+            }
+          });
+          setTimeout(function () { input.focus(); }, 50);
+        }
+      });
+    },
+
+    paletteGo: function (el) {
+      var route = el.dataset.route;
+      var run = el.dataset.run;
+      closeModal();
+      if (run === 'logout') { logout(); return; }
+      if (run === 'upload') { setTimeout(function () { openUploadModal(''); }, 90); return; }
+      if (run === 'install') { setTimeout(function () { ACTIONS.installApp(); }, 90); return; }
+      if (route) navigate(route);
     },
 
     showNotices: function () {
@@ -2551,6 +2698,12 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeModal();
+    if ((e.ctrlKey || e.metaKey) && String(e.key).toLowerCase() === 'k') {
+      if (!S.user) return;
+      e.preventDefault();
+      if ($('#modal-root') && $('#modal-root').innerHTML) closeModal();
+      ACTIONS.openSearch();
+    }
   });
 
   window.addEventListener('hashchange', function () {

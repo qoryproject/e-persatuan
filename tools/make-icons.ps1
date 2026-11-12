@@ -1,4 +1,4 @@
-# Jana ikon PWA e-Persatuan menggunakan System.Drawing (Windows PowerShell)
+﻿# Jana ikon PWA e-Persatuan menggunakan System.Drawing (Windows PowerShell)
 Add-Type -AssemblyName System.Drawing
 
 $outDir = Join-Path $PSScriptRoot '..\assets\img'
@@ -32,8 +32,8 @@ function Draw-Icon([int]$size, [string]$file, [bool]$maskable) {
   $brush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
     (New-Object System.Drawing.Point 0, 0),
     (New-Object System.Drawing.Point $size, $size),
-    [System.Drawing.ColorTranslator]::FromHtml('#102178'),
-    [System.Drawing.ColorTranslator]::FromHtml('#3A4CA8'))
+    [System.Drawing.ColorTranslator]::FromHtml('#0B1437'),
+    [System.Drawing.ColorTranslator]::FromHtml('#3D5AFE'))
   $g.FillPath($brush, $bgPath)
 
   # Grid halus
@@ -96,3 +96,4 @@ Draw-Icon 192 (Join-Path $outDir 'icon-192.png') $false
 Draw-Icon 512 (Join-Path $outDir 'icon-512.png') $false
 Draw-Icon 512 (Join-Path $outDir 'maskable-512.png') $true
 Draw-Icon 180 (Join-Path $outDir 'apple-touch-icon.png') $false
+

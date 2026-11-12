@@ -1,5 +1,5 @@
 {
-  "name": "e-Persatuan — Sistem Pengurusan Persatuan",
+  "name": "e-Persatuan — Portal Pendaftaran Persatuan",
   "short_name": "e-Persatuan",
   "description": "Portal pengurusan dokumen dan pendaftaran persatuan: senarai semak, profil AJK, dokumen, kewangan dan laporan rasmi.",
   "lang": "ms",
@@ -10,8 +10,8 @@
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait-primary",
-  "background_color": "#F3F5FA",
-  "theme_color": "#2B3A8F",
+  "background_color": "#F4F6FC",
+  "theme_color": "#0B1437",
   "categories": ["productivity", "business", "government"],
   "icons": [
     {
