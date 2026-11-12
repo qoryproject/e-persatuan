@@ -70,6 +70,10 @@ Buka <http://localhost:8000/>.
 
 **Repo GitHub:** <https://github.com/qoryproject/e-persatuan>
 
+**Pratonton public (GitHub Pages):** <https://qoryproject.github.io/e-persatuan/>
+
+**Sasaran utama:** Vercel → `https://e-persatuan.vercel.app` selepas import Git disambungkan.
+
 Panduan utama (Vercel): **[DEPLOY-VERCEL.md](DEPLOY-VERCEL.md)**
 
 Ringkasan pilihan:
